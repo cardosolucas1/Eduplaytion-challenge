@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./ProfileView.scss";
 
 const ProfileView: FC = (): JSX.Element => {
-
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
@@ -22,9 +21,7 @@ const ProfileView: FC = (): JSX.Element => {
         >
           <Link to="/login">Login</Link>
         </nav>
-        <main>
-
-        </main>
+        <main></main>
       </header>
     </div>
   );
