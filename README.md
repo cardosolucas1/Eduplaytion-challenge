@@ -2,29 +2,29 @@
 
 ## The Exercise
 
-Numetry is an EdTech company that is built to help kids and Teachers to find out and keep kinds having fun learning. Based on that we need to build a Web Panel to Teachers see and understand the student's progress and also create exercises based in the mini-games skills.
-To help us with this challenge we need to hire developers that must demonstrate an ability to read existing code and write new code using ReactJs, JS ES6+, Typescript and CSS. For that reason, this exercise provides boilerplate code that you are expected to extend and utilize in your solution.
+Numetry is an educational platform created by Eduplaytion, an EdTech company based in Norway. Our company mission is to build innovative web-based tools for teachers and engaging video games for pupils to help teach abstract concepts in Mathematics. For our Front-end Web Developer position, we are building a suite of tools for schools and teachers that shows pupil progress over times and other teaching aides.
+
+It is expected that the developer is able to demonstrate an ability to read existing code and write new code using React.js, Typescript and CSS. Due to those requirements, this exercise provides boilerplate code that you are expected to extend and utilize in your solution.
 
 This is a pair programming exercise and there is no time limit. If you get stuck, ask for help! Software development is a collaborative process! We are there to help guide you as we come to a solution together.
 
 ## Set-up Instructions
 
-Make sure you have `npm > 5` and `node > 14` installed before starting
-Clone this project: `git clone `
-Open the project in VS Code
-Open the `project folder` scene in the Scenes folder.
+1. Make sure you have `npm > 5` and `node > 14` installed before starting
+2. Clone this project: `git clone https://github.com/Eduplaytion/numetry-front-end-exercise.git`
+3. Open the project in your IDE of choice.
 
 ## The Goal
 
 Add the remaining functionality to the Login form found on the `Exercise` scene. The functionality that needs added is:
-The ability to define a css style to the login form page considering a responsive layout
-The ability to login with a valid username and password, save the user profile data in a state manager
-The ability to print the server error in console with an invalid username and password
-The ability to get and show the user data profile in a second page after the success login.
+1. Add CSS styling to the Login form while considering responsive design.
+2. The ability to login with a valid username and password and to save the user data in a state manager.
+3. The ability to print the server error in console when receiving an error response code
+4. The ability to get and show the user data profile on a second page after the success login.
 
 ## Acceptance Criteria
 
-    You must have to define a style css for the form considering a responsive pabe.
+    You must define a css for the form considering a responsive pabe.
     You must send a `POST` request to the following endpoint: `games/loginFast`
     When the user clicks the "Login" button, the Login button should be disabled to prevent multiple login attempts.
     When a user enters an invalid username and password, the Login button should enable so the user can try again.
