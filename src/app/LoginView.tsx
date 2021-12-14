@@ -18,20 +18,23 @@ const LoginView: FC = (): JSX.Element => {
     setFormObject({ ...formObject, [param]: e.target.value });
   };
 
+  console.log('starting request progress');
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     await login({
         email: formObject.username,
         password: formObject.password,
     }).then((result) => {
+      console.log('result request progress');
       console.log('result :: ', result);
-      // TODO :: define no State, setState para ser replicado no Context latr
+      // TODO :: define de UserProfile State,
+      // setState para ser replicado no Context later to be used in the profile pag
     })
     .catch((error) => {
       alert(error);
     })
     .finally(() => {
-      console.log('finally');
+      console.log('finally progress');
     })
   };
 
