@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { login } from "./core/services/auth.service";
 import "./LoginView.scss";
 
 const LoginView: FC = (): JSX.Element => {
@@ -10,21 +11,28 @@ const LoginView: FC = (): JSX.Element => {
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    // document.title = `You clicked ${count} times`;
+    console.log('Login :: useEffect');
   });
 
   const handleFormChange = (param: string) => (e: any) => {
     setFormObject({ ...formObject, [param]: e.target.value });
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-
-    console.log("handleSubmit::", handleSubmit);
-    console.log("formObject:: ", formObject);
-
-    // Validade the form
+    await login({
+        email: formObject.username,
+        password: formObject.password,
+    }).then((result) => {
+      console.log('result :: ', result);
+      // TODO :: define no State, setState para ser replicado no Context latr
+    })
+    .catch((error) => {
+      alert(error);
+    })
+    .finally(() => {
+      console.log('finally');
+    })
   };
 
   return (
