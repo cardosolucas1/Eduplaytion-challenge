@@ -68,7 +68,7 @@ const LoginView: FC = (): JSX.Element => {
           </nav>
         </header>
 
-        <h1> Login </h1>
+        <h1>Login</h1>
 
         <form className="App-form" onSubmit={handleSubmit}>
           <label>
@@ -103,8 +103,6 @@ const LoginView: FC = (): JSX.Element => {
           </section>
 
         </form>
-
-        
       </div>
     </div>
   );

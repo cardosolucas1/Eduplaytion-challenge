@@ -5,6 +5,13 @@ import "./ProfileView.scss";
 const ProfileView: FC = (): JSX.Element => {
   const location = useLocation();
 
+// UserProfile model :: 
+// firstName
+// avartaName
+// accountType
+// createdAt
+// subscriptionPlanId
+
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     console.log('location::', location);
@@ -22,13 +29,13 @@ const ProfileView: FC = (): JSX.Element => {
         >
           <Link to="/login">Login</Link>
         </nav>
-        <main>
+      </header>
+      <main>
           <ul>
             <li> {location.state.userProfile.name} </li>
             <li> </li>
           </ul>
         </main>
-      </header>
     </div>
   );
 };
