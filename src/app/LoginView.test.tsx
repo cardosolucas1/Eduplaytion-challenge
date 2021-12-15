@@ -4,24 +4,7 @@ import LoginView from "./LoginView";
 import ReactTestUtils, { act } from "react-dom/test-utils";
 import ReactDOM from "react-dom";
 import { MemoryRouter } from "react-router-dom";
-// test("renders learn react link", () => {
-//   render(<LoginView />);
-//   const linkElement = screen.getByText(/login/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
 
-// it("renders an h1", function () {
-//   var component = TestUtils.renderIntoDocument(
-//       <MyComponent />
-//   );
-
-//   var h1 = TestUtils.findRenderedDOMComponentWithTag(
-//      component, 'h1'
-//   );
-
-//   expect(h1.getDOMNode().textContent)
-//       .toEqual("A title");
-// });
 let container: ReactDOM.Container | null;
 
 const mockedUsedNavigate = jest.fn();
@@ -43,7 +26,6 @@ afterEach(() => {
 });
 
 it("can render and update a counter", () => {
-  // Test first render and componentDidMount
   act(() => {
     ReactDOM.render(
       <MemoryRouter initialEntries={["/login"]}>
