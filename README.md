@@ -17,6 +17,7 @@ This is a pair programming exercise and there is no time limit. If you get stuck
 ## The Goal
 
 Add the remaining functionality to the Login form found on the `Exercise` scene. The functionality that needs added is:
+
 1. Add CSS styling to the Login form while considering responsive design.
 2. The ability to login with a valid username and password and to save the user data in a state manager.
 3. The ability to print the server error in console when receiving an error response code

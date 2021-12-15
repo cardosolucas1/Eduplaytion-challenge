@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import LoginView from "./LoginView";
-import ReactTestUtils, { act } from 'react-dom/test-utils';
+import ReactTestUtils, { act } from "react-dom/test-utils";
 import ReactDOM from "react-dom";
 import { MemoryRouter } from "react-router-dom";
 // test("renders learn react link", () => {
@@ -9,7 +9,6 @@ import { MemoryRouter } from "react-router-dom";
 //   const linkElement = screen.getByText(/login/i);
 //   expect(linkElement).toBeInTheDocument();
 // });
-
 
 // it("renders an h1", function () {
 //   var component = TestUtils.renderIntoDocument(
@@ -26,13 +25,13 @@ import { MemoryRouter } from "react-router-dom";
 let container: ReactDOM.Container | null;
 
 const mockedUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-   ...jest.requireActual('react-router-dom'),
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockedUsedNavigate,
 }));
 
 beforeEach(() => {
-  container = document.createElement('div');
+  container = document.createElement("div");
   document.body.appendChild(container);
 });
 
@@ -43,20 +42,19 @@ afterEach(() => {
   }
 });
 
-
-it('can render and update a counter', () => {
+it("can render and update a counter", () => {
   // Test first render and componentDidMount
   act(() => {
     ReactDOM.render(
       <MemoryRouter initialEntries={["/login"]}>
-    <LoginView />
-    </MemoryRouter>
-    , container);
+        <LoginView />
+      </MemoryRouter>,
+      container
+    );
   });
 
   if (container != null) {
-    const atitle = container.querySelector('a');
-    if (atitle) 
-      expect(atitle.textContent).toBe('Login');
+    const atitle = container.querySelector("a");
+    if (atitle) expect(atitle.textContent).toBe("Login");
   }
 });
