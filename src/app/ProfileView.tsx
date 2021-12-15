@@ -1,13 +1,14 @@
 import React, { FC, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import "./ProfileView.scss";
 
 const ProfileView: FC = (): JSX.Element => {
+  const location = useLocation();
+
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    // document.title = `You clicked ${count} times`;
-  });
+    console.log('location::', location);
+  }, [location]);
 
   return (
     <div className="App">
@@ -21,7 +22,12 @@ const ProfileView: FC = (): JSX.Element => {
         >
           <Link to="/login">Login</Link>
         </nav>
-        <main></main>
+        <main>
+          <ul>
+            <li> {location.state.userProfile.name} </li>
+            <li> </li>
+          </ul>
+        </main>
       </header>
     </div>
   );

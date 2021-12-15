@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
+
 import { login } from "./core/services/auth.service";
 import "./LoginView.scss";
 
@@ -7,6 +9,11 @@ const LoginView: FC = (): JSX.Element => {
   const [formObject, setFormObject] = useState({
     username: "",
     password: "",
+  });
+
+  const [userProfile, setUserProfile] = useState({
+    name: "",
+    accountType: ""
   });
 
   // Similar to componentDidMount and componentDidUpdate:
@@ -18,6 +25,7 @@ const LoginView: FC = (): JSX.Element => {
     setFormObject({ ...formObject, [param]: e.target.value });
   };
 
+  const navigate = useNavigate();
   console.log('starting request progress');
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -25,10 +33,18 @@ const LoginView: FC = (): JSX.Element => {
         email: formObject.username,
         password: formObject.password,
     }).then((result) => {
-      console.log('result request progress');
       console.log('result :: ', result);
       // TODO :: define de UserProfile State,
       // setState para ser replicado no Context later to be used in the profile pag
+      setUserProfile({
+        name: result.accountData.firstName,
+        accountType: result.accountData.accountType, 
+      });
+      navigate('/profile', {state: { userProfile: {
+        name: result.accountData.firstName,
+        accountType: result.accountData.accountType, 
+      } } });
+      
     })
     .catch((error) => {
       alert(error);
@@ -60,7 +76,7 @@ const LoginView: FC = (): JSX.Element => {
               name="username"
               type="text"
               value={formObject.username}
-              placeholder="username"
+              placeholder="carlos54321@eduplaytion.no"
               onChange={handleFormChange("username")}
               required
             />
@@ -71,14 +87,24 @@ const LoginView: FC = (): JSX.Element => {
               name="password"
               type="input"
               value={formObject.password}
-              placeholder="password"
+              placeholder="123456"
               onChange={handleFormChange("password")}
               required
             />
           </label>
 
           <input type="Submit" />
+          
+          {/* TODO :: Show just when have a value defined */}
+          <section className="Profile-Logged">
+            <ul>
+              <li> Hey {userProfile.accountType} {userProfile.name}, welcome!</li>
+            </ul>
+          </section>
+
         </form>
+
+        
       </div>
     </div>
   );
