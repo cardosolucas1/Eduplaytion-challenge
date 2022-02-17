@@ -3,7 +3,7 @@ import axios from "axios";
 export const login = async (auth: any): Promise<any> => {
   return await axios({
     data: auth,
-    method: "GET",
+    method: "POST",
     url: "/login",
     baseURL: "https://staging-api.numetry.com",
   })

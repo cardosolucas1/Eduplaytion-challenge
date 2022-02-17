@@ -1,0 +1,70 @@
+.Login {
+  background: #6300be;
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Login__Form {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 152px;
+  margin: auto;
+  width: 90%;
+  max-width: 380px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: white;
+  padding: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.Login__Form__Title {
+  color: #6300be;
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #6300be;
+}
+
+.Login__Form__Label {
+  font-size: 0.9rem;
+  color: #3a3939;
+  margin-left: 0.5rem;
+}
+
+.Login__Form__Input {
+  height: 32px;
+  margin: 0.2rem 0.5rem 1rem;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+}
+
+.Login__Form__Error {
+  color: red;
+  text-align: end;
+  margin: 0.1rem;
+}
+
+.Login__Form__Submit {
+  height: 40px;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  text-transform: capitalize;
+}
+/*# sourceMappingURL=LoginView.css.map */

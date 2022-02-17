@@ -1,0 +1,54 @@
+.Login {
+  background: rgb(99, 0, 190);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__Form {
+    justify-content: center;
+    min-height: 152px;
+    margin: auto;
+    width: 90%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    &__Title {
+      color: rgb(99, 0, 190);
+      text-align: center;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgb(99, 0, 190);
+    }
+    &__Label {
+      font-size: 0.9rem;
+      color: rgb(58, 57, 57);
+      margin-left: 0.5rem;
+    }
+
+    &__Input {
+      height: 32px;
+      margin: 0.2rem 0.5rem 1rem;
+      border: 1px solid lightgray;
+      border-radius: 0.5rem;
+    }
+
+    &__Error {
+      color: red;
+      text-align: end;
+      margin: 0.1rem;
+    }
+
+    &__Submit {
+      height: 40px;
+      border: none;
+      border-radius: 0.5rem;
+      color: white;
+      text-transform: capitalize;
+    }
+  }
+}

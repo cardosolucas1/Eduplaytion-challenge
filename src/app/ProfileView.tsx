@@ -1,18 +1,21 @@
 import React, { FC, useEffect } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, Location } from "react-router-dom";
 import "./ProfileView.scss";
 
+export interface ProfileViewLocation extends Location {
+  state: {
+    userProfile: {
+      name: string;
+      avatarName: string;
+      accountType: string;
+      createdAt: string;
+      subscriptionPlanId: string;
+    };
+  };
+}
 const ProfileView: FC = (): JSX.Element => {
-  const location = useLocation();
+  const location = useLocation() as ProfileViewLocation;
 
-  // UserProfile model ::
-  // firstName
-  // avartaName
-  // accountType
-  // createdAt
-  // subscriptionPlanId
-
-  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     console.log("location::", location);
   }, [location]);
@@ -33,7 +36,10 @@ const ProfileView: FC = (): JSX.Element => {
       <main>
         <ul>
           <li> {location.state.userProfile.name} </li>
-          <li> </li>
+          <li> {location.state.userProfile.accountType} </li>
+          <li> {location.state.userProfile.createdAt} </li>
+          <li> {location.state.userProfile.avatarName} </li>
+          <li> {location.state.userProfile.subscriptionPlanId} </li>
         </ul>
       </main>
     </div>

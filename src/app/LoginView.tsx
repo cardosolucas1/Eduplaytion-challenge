@@ -1,96 +1,117 @@
-import React, { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import { login } from "./core/services/auth.service";
 import "./LoginView.scss";
 
+export interface Login {
+  username: string;
+  password: string;
+}
+
 const LoginView: FC = (): JSX.Element => {
-  const [formObject, setFormObject] = useState({
+  const [formObject, setFormObject] = useState<Login>({
     username: "",
     password: "",
   });
+  const [disabled, setDisabled] = useState(false);
+  const [error, setError] = useState("");
 
-  const [userProfile, setUserProfile] = useState({
-    name: "",
-    accountType: "",
-  });
-
-  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    console.log("Login :: useEffect");
-  });
+    setDisabled(false);
+    setError("");
+  }, []);
 
-  const handleFormChange = (param: string) => (e: any) => {
-    setFormObject({ ...formObject, [param]: e.target.value });
+  useEffect(() => {
+    console.log({ error });
+  }, [error]);
+
+  const handleFormChange = (event: any, inputName: string) => {
+    setFormObject((oldState: Login) => ({
+      ...oldState,
+      [inputName]: event.target.value,
+    }));
   };
 
   const navigate = useNavigate();
-  console.log("starting request progress");
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    await login({
-      email: formObject.username,
-      password: formObject.password,
-    })
-      .then((result) => {
-        console.log("result :: ", result);
-        // TODO :: define de UserProfile State,
-        // setState para ser replicado no Context later to be used in the profile pag
 
-        navigate("/profile", {
-          state: {
-            userProfile: {
-              name: result.accountData.firstName,
-              accountType: result.accountData.accountType,
+    if (!formObject.password || !formObject.password) {
+      setError("username or password can not be empty");
+      return;
+    } else {
+      setDisabled(true);
+      setError("Loading");
+
+      await login({
+        email: formObject.username,
+        password: formObject.password,
+      })
+        .then(({ data }) => {
+          navigate("/profile", {
+            state: {
+              userProfile: {
+                name: data.accountData.firstName,
+                accountType: data.accountData.accountType,
+                avatarName: data.accountData.avatarName,
+                createdAt: data.accountData.createdAt,
+                subscriptionPlanId: data.accountData.subscriptionPlanId,
+              },
             },
-          },
+          });
+        })
+        .catch((error) => {
+          setError(error.message);
+        })
+        .finally(() => {
+          setDisabled(false);
         });
-      })
-      .catch((error) => {
-        alert(error);
-      })
-      .finally(() => {
-        console.log("finally progress");
-      });
+    }
   };
 
   return (
     <div className="App">
       <div className="App-container">
-        <header className="App-header">
-          <nav
-            style={{
-              borderBottom: "solid 1px",
-              paddingBottom: "1rem",
-            }}
-          >
-            <Link to="/profile">Profile</Link>
-          </nav>
-        </header>
+        <section className="Login">
+          <form className="Login__Form" onSubmit={handleSubmit}>
+            <h1 className="Login__Form__Title">Login</h1>
+            <label className="Login__Form__Label" htmlFor="username">
+              Name
+            </label>
+            <input
+              className="Login__Form__Input"
+              name="username"
+              type="text"
+              value={formObject.username}
+              onChange={(e: any) => handleFormChange(e, "username")}
+              placeholder="carlos54321@eduplaytion.no"
+            />
+            <label className="Login__Form__Label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="Login__Form__Input"
+              name="password"
+              type="input"
+              onChange={(e: any) => handleFormChange(e, "password")}
+              value={formObject.password}
+              placeholder="123456"
+            />
+            {error !== "" && <p className="Login__Form__Error">{error}</p>}
 
-        <h1>Login</h1>
-
-        <form className="App-form" onSubmit={handleSubmit}>
-          <input
-            name="username"
-            type="text"
-            value={formObject.username}
-            placeholder="carlos54321@eduplaytion.no"
-          />
-
-          <input name="password" type="input" placeholder="123456" />
-
-          {/* TODO :: Show just when have a value defined */}
-          <section className="Profile-Logged">
-            <ul>
-              <li>
-                {" "}
-                Hey {userProfile.accountType} {userProfile.name}, welcome!
-              </li>
-            </ul>
-          </section>
-        </form>
+            <input
+              className="Login__Form__Submit"
+              type="submit"
+              style={{
+                backgroundColor: `${
+                  disabled ? "background: grey" : "rgb(99, 0, 190)"
+                }`,
+              }}
+              disabled={disabled}
+            />
+          </form>
+        </section>
       </div>
     </div>
   );
